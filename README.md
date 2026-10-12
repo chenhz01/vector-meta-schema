@@ -2,6 +2,8 @@
 
 A metadata schema, validator, and cross-store migration mapper for vector-database records. Teams ingesting documents into more than one vector store — or migrating between stores — need one place that says which metadata fields are required, which are optional, and how field names map across stores. If your records already validate cleanly and you never switch stores, you do not need this. Confidence: [High ≥80%] that structural validation + key mapping catches the dominant migration failures (missing/ill-typed fields, key-name drift); [Medium] that the bundled profiles match your store's exact SDK. As of 2026-10-11.
 
+<p align="center"><img src="docs/demo.gif" alt="demo" width="720"></p>
+
 ## Problem
 
 Vector stores disagree about everything except the idea of a record. One store calls the text field `text`, another `content`, a third `document`. The vector sits in `vector`, `values`, or `embedding`; the payload in `metadata`, `payload`, or `properties`. When a pipeline is ported between stores, records fail silently: text lands in the wrong key, vectors arrive as the wrong dimension, and required fields vanish. The failure is discovered downstream — at retrieval time, weeks later.
